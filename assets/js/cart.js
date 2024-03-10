@@ -48,7 +48,11 @@ function getBasketDatas() {
         <td> <img src="${product.image}" style="width: 100px; height: 100px;" alt=""></td>
         <td>${product.name}</td>
         <td>${product.description}</td>
-        <td><i class="fa-solid fa-plus icon-plus"></i><input style = "width:20px" value="${product.count}" type ="text"><i class="fa-solid fa-minus icon-minus"></i></td>
+        <td>
+        <i class="fa-solid fa-plus icon-plus"></i>
+        <input style = "width:20px" value="${product.count}" type ="text">
+        <i class="fa-solid fa-minus icon-minus"></i>
+        </td>
         <td>${product.price} ₼</td>
         <td>${product.price * product.count} ₼</td>
         <td><i class="fa-solid fa-circle-xmark delete-icon" product-id=${product.id}></i></td>
@@ -96,15 +100,55 @@ let minusIcons = document.querySelectorAll(".icon-minus");
 
 plusIcons.forEach(plusIcon => {
     plusIcon.addEventListener("click", function () {
+        this.nextElementSibling.value++;
 
-        productCount=this.nextElementSibling.value;
-        
-        basket = basket.filter(product => product.id == this.getAttribute("product-id"));
-        
-        localStorage.setItem("basket", JSON.stringify(basket));
+        let existProduct = basket.find(m => m.id == parseInt(this.parentNode.parentNode.lastElementChild.firstElementChild.getAttribute("product-id")));
+
+        console.log(existProduct);
+
+        if (existProduct != undefined) {
+            existProduct.count = parseInt(this.nextElementSibling.value)
+        }
+
+
 
         getGrandTotal(basket);
         checkCartForShowDatas(basket);
         getBasketCount(basket);
+
+        localStorage.setItem("basket", JSON.stringify(basket));
+
+    })
+})
+
+
+minusIcons.forEach(minusIcon => {
+    minusIcon.addEventListener("click", function () {
+
+        if (this.previousElementSibling.value > 1) {
+
+            this.previousElementSibling.value--;
+
+            let existProduct = basket.find(m => m.id == parseInt(this.parentNode.parentNode.lastElementChild.lastElementChild.getAttribute("product-id")));
+
+            console.log(existProduct);
+
+            if (existProduct != undefined) {
+                existProduct.count = parseInt(this.previousElementSibling.value)
+            }
+
+
+
+            getGrandTotal(basket);
+            checkCartForShowDatas(basket);
+            getBasketCount(basket);
+
+            localStorage.setItem("basket", JSON.stringify(basket));
+        }
+        return;
+
+
+
+
     })
 })
