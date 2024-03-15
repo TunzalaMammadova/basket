@@ -18,12 +18,12 @@ header .navigation .basket-icon span {
   height: 1500px;
 }
 
-a {
+.navigation a {
   position: relative;
 }
 
 
-a:before {
+.navigation a:before {
   position: absolute;
   top: 0;
   right: 0;
@@ -34,7 +34,7 @@ a:before {
 }
 
 
-a:after {
+.navigation a:after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -48,7 +48,11 @@ a:after {
 }
 
 
-a:hover:before,
+.navigation a:hover:before,
 a:hover:after {
   transform: scaleX(1);
+}
+
+span{
+  color: red;
 }

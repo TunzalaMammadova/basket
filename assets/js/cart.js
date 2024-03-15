@@ -63,6 +63,7 @@ function getBasketDatas() {
     tableBody.innerHTML = datas;
 }
 
+
 getBasketDatas();
 
 function getGrandTotal(datas) {
@@ -111,7 +112,6 @@ plusIcons.forEach(plusIcon => {
         }
 
 
-
         getGrandTotal(basket);
         checkCartForShowDatas(basket);
         getBasketCount(basket);
@@ -138,7 +138,6 @@ minusIcons.forEach(minusIcon => {
             }
 
 
-
             getGrandTotal(basket);
             checkCartForShowDatas(basket);
             getBasketCount(basket);
@@ -146,9 +145,5 @@ minusIcons.forEach(minusIcon => {
             localStorage.setItem("basket", JSON.stringify(basket));
         }
         return;
-
-
-
-
     })
 })
