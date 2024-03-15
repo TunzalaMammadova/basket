@@ -17,3 +17,38 @@ header .navigation .basket-icon span {
 #products{
   height: 1500px;
 }
+
+a {
+  position: relative;
+}
+
+
+a:before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #f90000;
+  transition: all 0.5s;
+}
+
+
+a:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #f90000;
+  transform: scaleX(0);
+  transform-origin: top;
+  transition: all 0.5s;
+}
+
+
+a:hover:before,
+a:hover:after {
+  transform: scaleX(1);
+}
